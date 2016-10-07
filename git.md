@@ -1,4 +1,4 @@
-
+ 
 ```
 git辅助插件:
 http://folioformac.com/
@@ -49,8 +49,74 @@ git push origin master 推送最新修改；
 ```
 **git工作原理**
 git add 实际上就是要把要提交的所有修改fang'dao放到暂存区（Stage），然后执行git commit 就可以一次把暂存区的所有修改提交到分支。
+
+
 ![image](http://note.youdao.com/yws/public/resource/f2b6bcbdc61af782b9239e4a1f8f902e/10CF5ACAD182461AA31D0FE0C90A1BFE)
+
 
 
 **删除项目**
 在工程页面 点击设置  最下面 delete  输入工程名 确认删除
+
+1. 从已有的分支创建新的分支(如从master分支),创建一个dev分支
+
+
+```
+git checkout -b dev
+```
+
+
+2. 创建完可以查看一下,分支已经切换到dev
+
+
+```
+git branch
+
+    * dev
+
+    master
+```
+
+
+3. 提交该分支到远程仓库
+
+
+```
+git push origin dev
+```
+
+
+4. 测试从远程获取dev
+
+
+```
+git pull origin dev
+```
+
+
+或者：
+
+如果用命令行，运行 git fetch，可以将远程分支信息获取到本地，再运行 
+
+```
+git checkout -b local-branchname origin/remote_branchname
+```
+就可以将远程分支映射到本地命名为local-branchname  的一分支
+
+5. 设置git push,pull默认的提交获取分支,这样就很方便的使用git push 提交信息或git pull获取信息
+
+
+```
+git branch --set-upstream-to=origin/dev
+```
+
+
+取消对master的跟踪
+
+
+```
+git branch --unset-upstream master
+```
+
+
+6. 现在随便修改一下工程文件的内容,然后git commit ,git push,之后就可以直接提交到远程的dev分支中,而不会是master

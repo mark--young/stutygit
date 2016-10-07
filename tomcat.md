@@ -1,95 +1,59 @@
-> jdk安装 集成开发工具 eclipse 
-
-
-
-
-
-
-> C:\Windows\System32\drivers\etc\hosts  
-
-127.0.0.1 example.com 不能有星号
-
-如果不能访问 127.0.0.1 把IP6给去掉.点属性.
-
-
-1
-```
-<Connector port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-```
-**改为**
-> 
-```
-<Connector port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-               
 
 ```
-
-
-2
+git辅助插件:
+http://folioformac.com/
 ```
-
- <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false"> 
- </host>
+**osx使用git**
 
 ```
-改为
+廖雪峰git官网：
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000
+
+git config --global user.name "Your Name"
+ git config --global user.email "email@example.com"
+ssh -T git@github.com 是否连上 github
+mkdir 创建目录
+psd  显示目录信息
+cd   进入目录
+open 打开文件夹
+git init  把这个目录变成git的仓库
+git add   告诉git 把文件添加到参考
+git commit  告诉git 把文件提交到参考 加-m “” 本次提交说明 便于维护
+git status  查看仓库当前状态
+git diff    查看不同 
+git log    显示最近到最远的提交日志 --pretty=oneline 查看具体版本信息
+git reset  git中用head表示版本 git reset --hard HEAD~100 
+git reflog  记录每一次版本命令 回到那个版本都ok
+git reset --hard XXXX回到指定版本
+git checkout -- readme.txt 丢弃工作区修改
+git reset HEAD readme.txt 暂存区的修改撤销掉
+rm 把没用的文件删除掉
+git checkout --test.txt 恢复提交区删除文件
+git clone git@github.com:mark--young/Testgit.git 克隆仓库到本地
+
+git branch 查看分支
+git branch <name> 创建分支
+git checkout <name> 切换分支
+git checkout -b <name> 创建+切换分支
+git merge< name> 合并某分支到当前分支
+git branch -d <name> 删除分支
+pull：远程到本地
+push:本地 到远程
+
+git remote add origin git@server-name:path/repo-name.git；要关联一个远程库，使用命令
+
+git push -u origin master第一次推送master分支的所有内容；
+
+git push origin master 推送最新修改；
 
 ```
-<Host appBase="webapps" autoDeploy="true" name="hr.xinyanyuan.com.cn" unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false">  
-```
-<Context docBase="hr" path="" reloadable="true" />
+**git工作原理**
+git add 实际上就是要把要提交的所有修改fang'dao放到暂存区（Stage），然后执行git commit 就可以一次把暂存区的所有修改提交到分支。
 
-3
 
-```
- <Engine name="Catalina" defaultHost="localhost">
- ```
-改为
-
-```
- <Engine name="Catalina" defaultHost="hr.xinyanyuan.com.cn">
-```
+![image](http://note.youdao.com/yws/public/resource/f2b6bcbdc61af782b9239e4a1f8f902e/10CF5ACAD182461AA31D0FE0C90A1BFE)
 
 
 
-
-较为完整tomcat介绍版本:
-```
-http://blog.csdn.net/xiaokui_wingfly/article/details/46665681
-```
-
-> 在 Windows 防火墙中打开端口
-打开端口 80
-在 “开始” 菜单上单击 “控制面板”，单击 “系统和安全”，然后单击 “Windows 防火墙”。 不为“类别”视图配置控制面板，您只需要选择 “Windows 防火墙”。
-单击 “高级设置”。
-单击 “入站规则”。
-在 “操作” 窗口中单击 “新建规则” 。
-单击 “端口” 的 “规则类型”。
-单击“下一步” 。
-在 “协议和端口” 页上，单击 TCP。
-选择 “特定本地端口” ，然后键入值 80。
-单击“下一步” 。
-在 “操作” 页上，单击 “允许连接”。
-单击“下一步” 。
-在 “配置文件” 页上，单击适合您的环境的选项。
-单击“下一步” 。
-在 名称 页上，输入的名称为ReportServer (TCP 端口 80 上)
-单击 “完成”。
-重新启动计算机。
-
-**乱码问题/移动端乱码问题**
-```
-<Connector port="8080"protocol="HTTP/1.1"
-connectionTimeout="20000"
-redirectPort="8443"URIEncoding="UTF-8" />
-```
-
-```
-〈meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-```
-
-> 保持文件也是utf-8的格式.还有一个办法是打开文件之后点击菜单File——>Save as，在弹出的对话框的最下面就是当前文件的编码，更改编码之后保存并覆盖原文件就相当于修改了此文件的编码。
+**删除项目**
+在工程页面 点击设置  最下面 delete  输入工程名 确认删除
